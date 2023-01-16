@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import socket
 from telegram.ext.updater import Updater
@@ -7,13 +8,18 @@ from telegram.ext.commandhandler import CommandHandler
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
 
+# get token path
+scriptpath = os.path.realpath(__file__)
+scriptdir, _ = os.path.split(scriptpath)
+tokenpath = scriptdir + "/token"
+
 # check if token file exists
-if not os.path.exists("token"):
+if not os.path.exists(tokenpath):
     print("Please add file 'token' with Telegram API token.")
     exit()
 
 # read token file
-with open("token", "r") as f:
+with open(tokenpath, "r") as f:
     token = f.readline().strip()
 
 # create updater object
